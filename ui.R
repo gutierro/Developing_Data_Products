@@ -9,8 +9,8 @@ shinyUI(fluidPage(
         
         helpText( h5("Description:"),
                   
-                  h6("This calculator provides your baby's length percentile based on age and gender.
-                        It uses the data table from WHO growth charts for babies and infants from birth to two years of age."),
+                  h6("This calculator provides your baby's length percentile based on age and gender. It plots the length versus age graph and percentile lines and it highlights the result.
+                        It uses the data from WHO growth charts for babies and infants from birth to two years of age."),
                   a("http://www.cdc.gov/growthcharts/who_charts.htm"),
 
                   h5("Input:"),        
@@ -21,7 +21,7 @@ shinyUI(fluidPage(
                   
                   h6("- Percentile: The length percentile of the child."),
                   h6("- Age: The age of the child in months."),
-                  h6("- Graph Plot: Length versus Age graph and calculated percentile lines.")),
+                  h6("- Graph Plot: Length versus age graph and percentile lines.")),
       
         fluidRow(
                 
