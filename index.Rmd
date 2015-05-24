@@ -1,0 +1,87 @@
+---
+title       : Baby Infant Growth Chart Calculator
+subtitle    : 
+author      : 
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+---
+
+
+#### Description:
+
+This calculator provides your baby's length percentile based on age and gender.
+It uses the data from WHO growth charts for babies and infants from birth to two years of age.
+
+http://www.cdc.gov/growthcharts/who_charts.htm
+ 
+
+#### Input:       
+* Enter Birthday.
+* Enter Lenght in cm.
+
+#### Output:
+* Percentile: The length percentile of the child.
+* Age: The age of the child in months.
+* Graph Plot: Length versus Age graph and calculated percentile lines.
+
+--- .class #id 
+
+#### Data Set sample
+
+This is an example of the data tables used for the percentile calculation.
+
+```{r,echo=FALSE,message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(reshape)
+WHO_Length_Chart <-readRDS("../data/WHO_Lenght_Chart.rds")
+
+WHO_GENDER_data<-melt(WHO_Length_Chart %>% 
+                              filter(gender=='M')%>% 
+                              select(Month,starts_with("Q")), id="Month")%>% 
+        mutate(Percentile=as.integer(substring(variable, 2))) %>% 
+        select(Month,Percentile,value)
+
+```
+
+```{r}
+head(WHO_GENDER_data)
+```
+
+
+--- .class #id 
+
+#### Calculation
+
+For the percentale calculation, the calculation does a linear interpolation, fitting a linear model to a subset of WHO data and using the predict function to calculate the percetale.
+
+```{r, eval=FALSE}
+
+fit<-lm(Percentile ~ . ,  data=trainning) 
+out<-round(predict.lm(fit,test()),1)
+
+```
+
+For more details the application can be found: 
+"https://github.com/gutierro/Developing_Data_Products"
+
+--- .class #id
+
+#### Output Chart
+```{r ,echo=FALSE,fig.width=14}
+
+qplot(main="Lenght for age percentiles",
+     x = Month, 
+     y = value, geom="line",
+     colour=as.factor(Percentile),
+     ylab="Lenght (cm)",
+     xlab="Age (Months)",
+     data = WHO_GENDER_data)
+
+```
+
+

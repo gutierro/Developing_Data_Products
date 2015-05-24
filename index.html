@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Baby Infant Growth Chart Calculator</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Baby Infant Growth Chart Calculator">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Baby Infant Growth Chart Calculator</h1>
+    <h2></h2>
+    <p><br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h4>Description:</h4>
+  </hgroup>
+  <article data-timings="">
+    <p>This calculator provides your baby&#39;s length percentile based on age and gender.
+It uses the data from WHO growth charts for babies and infants from birth to two years of age.</p>
+
+<p><a href="http://www.cdc.gov/growthcharts/who_charts.htm">http://www.cdc.gov/growthcharts/who_charts.htm</a></p>
+
+<h4>Input:</h4>
+
+<ul>
+<li>Enter Birthday.</li>
+<li>Enter Lenght in cm.</li>
+</ul>
+
+<h4>Output:</h4>
+
+<ul>
+<li>Percentile: The length percentile of the child.</li>
+<li>Age: The age of the child in months.</li>
+<li>Graph Plot: Length versus Age graph and calculated percentile lines.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h4>Data Set sample</h4>
+  </hgroup>
+  <article data-timings="">
+    <p>This is an example of the data tables used for the percentile calculation.</p>
+
+<pre><code class="r">head(WHO_GENDER_data)
+</code></pre>
+
+<pre><code>##   Month Percentile    value
+## 1     0          2 46.09799
+## 2     1          2 50.83131
+## 3     2          2 54.42396
+## 4     3          2 57.34047
+## 5     4          2 59.72447
+## 6     5          2 61.67956
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h4>Calculation</h4>
+  </hgroup>
+  <article data-timings="">
+    <p>For the percentale calculation, the calculation does a linear interpolation, fitting a linear model to a subset of WHO data and using the predict function to calculate the percetale.</p>
+
+<pre><code class="r">fit&lt;-lm(Percentile ~ . ,  data=trainning) 
+out&lt;-round(predict.lm(fit,test()),1)
+</code></pre>
+
+<p>For more details the application can be found: 
+&quot;<a href="https://github.com/gutierro/Developing_Data_Products">https://github.com/gutierro/Developing_Data_Products</a>&quot;</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h4>Output Chart</h4>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Description:'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Data Set sample'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Calculation'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Output Chart'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
