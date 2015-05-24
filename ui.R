@@ -13,11 +13,11 @@ shinyUI(fluidPage(
                         It uses the data table from WHO growth charts for babies and infants from birth to two years of age."),
                   a("http://www.cdc.gov/growthcharts/who_charts.htm"),
 
-                  h5("Calculation Instructions:"),        
+                  h5("Input:"),        
                   h6("- Enter Birthday"),
                   h6("- Enter Lenght in cm."),
                   
-                  h5("Outputs:"),
+                  h5("Output:"),
                   
                   h6("- Percentile: The length percentile of the child."),
                   h6("- Age: The age of the child in months."),
